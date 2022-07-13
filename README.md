@@ -20,6 +20,7 @@ Add-AppxPackage ubuntu-2204.appx
 ```
 wsl -l -v
 ```
+# Podman
 ```
 update-alternatives --set iptables /usr/sbin/iptables-legacy
 update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
