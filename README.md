@@ -35,12 +35,12 @@ ubuntu2204.exe
 wsl --shutdown
 wsl --exec bash
 ```
-# Set iptables-legacy, Fix /tmp and Restat WSL
+# Set iptables-legacy, Fix /tmp
 ```
 sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
 sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 echo "none  /tmp  tmpfs  defaults  0 0" | sudo tee -a /etc/fstab
-sudo rm /tmp/*
+sudo rm -rf /tmp/*
 sudo mount /tmp
 ```
 # Podman
@@ -70,5 +70,7 @@ EOF
 ```
 podman build -t website:v1 .
 podman run -d --rm -p 8080:80 --name nginx website:v1
-curl localhost:8080
+curl http://localhost:8080
+podman logs nginx
+podman stop nginx
 ```
