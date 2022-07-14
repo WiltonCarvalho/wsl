@@ -32,10 +32,10 @@ wsl --set-default-version 2
 ubuntu2204.exe
 
 
-wsl --shutdown
+wsl.exe --shutdown
 wsl --exec bash
 ```
-# Set iptables-legacy, Fix /tmp
+# Set iptables-legacy and fix /tmp
 ```
 sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
 sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
@@ -73,4 +73,20 @@ podman run -d --rm -p 8080:80 --name nginx website:v1
 curl http://localhost:8080
 podman logs nginx
 podman stop nginx
+```
+# Podman Alpine WSL
+```
+su -c "apk add podman buildah skopeo jq curl git"
+su -c 'echo "none  /tmp  tmpfs  defaults  0 0" | tee -a /etc/fstab'
+su -c "rm -rf /tmp/*"
+su -c "mount /tmp"
+su -c "echo $USER:100000:65536 | tee /etc/subuid
+su -c "echo $USER:100000:65536 | tee /etc/subgid"
+```
+
+# Restart WSL
+```
+wsl.exe --shutdown
+wsl --exec ash
+podman ps
 ```
