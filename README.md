@@ -55,7 +55,7 @@ sudo /etc/init.d/binfmt-support restart
 podman run -d --rm -p 8080:80 --name nginx docker.io/library/nginx:stable
 ```
 ```
-curl localhost:8080
+curl http://localhost:8080
 podman logs nginx
 podman stop nginx
 ```
