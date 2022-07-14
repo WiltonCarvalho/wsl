@@ -29,7 +29,7 @@ rm /tmp/*
 mount /tmp
 ```
 ```
-apt update
+sudo apt update
 ```
 ```
 sudo apt install qemu-user-static podman buildah skopeo jq
