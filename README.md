@@ -76,7 +76,7 @@ podman stop nginx
 ```
 # Podman Alpine WSL
 ```
-su -c "apk add podman buildah skopeo jq curl git"
+su -c "apk add libstdc++ podman buildah skopeo jq curl git"
 su -c 'echo "none  /tmp  tmpfs  defaults  0 0" | tee -a /etc/fstab'
 su -c "rm -rf /tmp/*"
 su -c "mount /tmp"
