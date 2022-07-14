@@ -43,7 +43,7 @@ echo "none  /tmp  tmpfs  defaults  0 0" | sudo tee -a /etc/fstab
 sudo rm -rf /tmp/*
 sudo mount /tmp
 ```
-# Podman
+# Podman Ubuntu WSL
 ```
 sudo apt update
 ```
