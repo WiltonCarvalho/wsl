@@ -12,22 +12,37 @@ curl.exe -L# -o wsl_update_x64.msi https://wslstorestorage.blob.core.windows.net
 msiexec /i wsl_update_x64.msi
 ```
 ```
+winget search -s winget Ubuntu
+winget install -e --id Canonical.Ubuntu
+
+# OR
+
 curl.exe -L# -o ubuntu-2204.appx https://aka.ms/wslubuntu2204
 ```
 ```
+dism.exe /online /add-ProvisionedAppxPackage /PackagePath:ubuntu-2204.appx /SkipLicense
+
+# OR
+
 Add-AppxPackage ubuntu-2204.appx
 ```
 ```
+wsl --set-default-version 2
+ubuntu2204.exe
+```
 wsl -l -v
+wsl --shutdown
+wsl --exec bash
+```
+# Set iptables-legacy, Fix /tmp and Restat WSL
+```
+sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
+sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+echo "none  /tmp  tmpfs  defaults  0 0" | sudo tee -a /etc/fstab
+sudo rm /tmp/*
+sudo mount /tmp
 ```
 # Podman
-```
-update-alternatives --set iptables /usr/sbin/iptables-legacy
-update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
-echo "none  /tmp  tmpfs  defaults  0 0" | sudo tee -a /etc/fstab
-rm /tmp/*
-mount /tmp
-```
 ```
 sudo apt update
 ```
