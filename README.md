@@ -32,7 +32,8 @@ mount /tmp
 apt update
 ```
 ```
-apt -y install podman
+sudo apt install qemu-user-static podman buildah skopeo jq
+sudo /etc/init.d/binfmt-support restart
 ```
 ```
 podman run -d --rm -p 8080:80 --name nginx docker.io/library/nginx:stable
