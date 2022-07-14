@@ -40,6 +40,8 @@ podman logs nginx
 podman stop nginx
 ```
 ```
+echo ok > index.html
+
 cat <<'EOF'> Dockerfile
 FROM docker.io/library/nginx:stable
 COPY index.html /usr/share/nginx/html/index.html
