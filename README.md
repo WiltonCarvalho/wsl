@@ -24,6 +24,9 @@ wsl -l -v
 ```
 update-alternatives --set iptables /usr/sbin/iptables-legacy
 update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+echo "none  /tmp  tmpfs  defaults  0 0" | sudo tee -a /etc/fstab
+rm /tmp/*
+mount /tmp
 ```
 ```
 apt update
