@@ -11,14 +11,18 @@ curl.exe -L# -o wsl_update_x64.msi https://wslstorestorage.blob.core.windows.net
 ```
 msiexec /i wsl_update_x64.msi
 ```
+# Install WSL Ubuntu 22.04
+- From App Store
+- https://apps.microsoft.com/store/detail/ubuntu-2204-lts/9PN20MSR04DW
 ```
+# From Winget
 winget search -s winget Ubuntu
 winget install -e --id Canonical.Ubuntu
 
-# OR
-
+# From Appx Image
 curl.exe -L# -o ubuntu-2204.appx https://aka.ms/wslubuntu2204
 ```
+# Install Appx Image
 ```
 dism.exe /online /add-ProvisionedAppxPackage /PackagePath:ubuntu-2204.appx /SkipLicense
 
@@ -26,11 +30,13 @@ dism.exe /online /add-ProvisionedAppxPackage /PackagePath:ubuntu-2204.appx /Skip
 
 Add-AppxPackage ubuntu-2204.appx
 ```
+
+# WSL Initial Setup
 ```
 wsl -l -v
 wsl --set-default-version 2
-ubuntu2204.exe
 
+ubuntu2204.exe
 
 wsl.exe --shutdown
 wsl --exec bash
@@ -75,6 +81,7 @@ podman logs nginx
 podman stop nginx
 ```
 # Podman Alpine WSL
+- https://apps.microsoft.com/store/detail/alpine-wsl/9P804CRF0395
 ```
 su -c "apk add libstdc++ podman buildah skopeo jq curl git"
 su -c 'echo "none  /tmp  tmpfs  defaults  0 0" | tee -a /etc/fstab'
