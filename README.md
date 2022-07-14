@@ -27,10 +27,11 @@ dism.exe /online /add-ProvisionedAppxPackage /PackagePath:ubuntu-2204.appx /Skip
 Add-AppxPackage ubuntu-2204.appx
 ```
 ```
+wsl -l -v
 wsl --set-default-version 2
 ubuntu2204.exe
-```
-wsl -l -v
+
+
 wsl --shutdown
 wsl --exec bash
 ```
