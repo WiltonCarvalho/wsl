@@ -83,14 +83,18 @@ podman stop nginx
 # Podman Alpine WSL
 - https://apps.microsoft.com/store/detail/alpine-wsl/9P804CRF0395
 ```
-su -c "apk add libstdc++ podman buildah skopeo jq curl git tzdata"
-su -c 'echo "none  /tmp  tmpfs  defaults  0 0" | tee -a /etc/fstab'
-su -c "rm -rf /tmp/*"
-su -c "mount /tmp"
-su -c "echo $USER:100000:65536 | tee /etc/subuid
-su -c "echo $USER:100000:65536 | tee /etc/subgid"
-su -c "cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime"
-su -c "echo "America/Sao_Paulo" > /etc/timezone"
+su -c "
+  set -ex
+  apk add libstdc++ tzdata sudo tmux jq curl git
+  echo "$USER" 'ALL=(ALL:ALL) NOPASSWD: ALL' | tee /etc/sudoers.d/$USER
+  echo 'none  /tmp  tmpfs  defaults  0 0' | tee -a /etc/fstab
+  rm -rf /tmp/*
+  mount /tmp
+  echo $USER:100000:65536 | tee /etc/subuid
+  echo $USER:100000:65536 | tee /etc/subgid
+  cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+  echo "America/Sao_Paulo" | tee /etc/timezone
+"
 ```
 
 # Restart WSL
