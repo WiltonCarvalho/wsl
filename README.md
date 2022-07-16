@@ -85,7 +85,7 @@ podman stop nginx
 ```
 su -c "
   set -ex
-  apk add libstdc++ tzdata sudo tmux jq curl git
+  apk add libstdc++ tzdata sudo tmux jq curl git podman buildah skopeo
   echo "$USER" 'ALL=(ALL:ALL) NOPASSWD: ALL' | tee /etc/sudoers.d/$USER
   echo 'none  /tmp  tmpfs  defaults  0 0' | tee -a /etc/fstab
   rm -rf /tmp/*
