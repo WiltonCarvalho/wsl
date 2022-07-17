@@ -141,3 +141,7 @@ winget search Microsoft.OpenJDK
 ```
 winget install Microsoft.OpenJDK.11
 ```
+# Git
+```
+winget install --id Git.Git -e --source winget
+```
