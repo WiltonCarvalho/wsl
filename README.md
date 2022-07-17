@@ -96,6 +96,12 @@ su -c "
   echo "America/Sao_Paulo" | tee /etc/timezone
 "
 ```
+# Restart WSL
+```
+wsl.exe --shutdown
+wsl --exec ash
+podman ps
+```
 # Podman Docker CLI
 ```
 sudo apk add docker-cli netcat-openbsd
@@ -106,13 +112,6 @@ if ! nc -z 127.0.0.1 2376; then
 fi
 export DOCKER_HOST=tcp://127.0.0.1:2376
 EOF
-```
-
-# Restart WSL
-```
-wsl.exe --shutdown
-wsl --exec ash
-podman ps
 ```
 # Docker Standalone
 ```
