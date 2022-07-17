@@ -133,3 +133,11 @@ if [ ! -S "/var/run/docker.sock" ] && [ -f /usr/local/bin/dockerd ]; then
   '
 fi
 EOF
+```
+# MS OpenJDK
+```
+winget search Microsoft.OpenJDK
+```
+```
+winget install Microsoft.OpenJDK.11
+```
