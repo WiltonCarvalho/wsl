@@ -45,6 +45,9 @@ cat <<'EOF'> /etc/docker/daemon.json
 }
 EOF
 
+echo '%docker ALL=(ALL) NOPASSWD: /usr/bin/dockerd' | tee /etc/sudoers.d/docker1
+echo "$SUDO_USER" 'ALL=(ALL) NOPASSWD: /usr/bin/dockerd' | tee /etc/sudoers.d/docker2
+
 sed -i "/group/ s/docker/$SUDO_USER/" /etc/docker/daemon.json
 
 docker --version
