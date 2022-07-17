@@ -1,4 +1,4 @@
-# WSL
+# WSL Requirements
 ```
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
@@ -113,4 +113,8 @@ EOF
 wsl.exe --shutdown
 wsl --exec ash
 podman ps
+```
+# Docker Standalone
+```
+sudo ./dockerd_install.sh
 ```
