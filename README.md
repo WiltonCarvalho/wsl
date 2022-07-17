@@ -130,7 +130,7 @@ if [ ! -S "/var/run/docker.sock" ] && [ -f /usr/local/bin/dockerd ]; then
   nohup sudo -b sh -c '
     set -ex
     exec dockerd &>/var/log/docker.log &
-  '
+  ' > /tmp/nohup.out
 fi
 EOF
 ```
