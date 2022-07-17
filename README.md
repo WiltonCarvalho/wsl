@@ -96,6 +96,17 @@ su -c "
   echo "America/Sao_Paulo" | tee /etc/timezone
 "
 ```
+# Podman Docker CLI
+```
+sudo apk add docker-cli netcat-openbsd
+
+cat <<'EOF'> .profile
+if ! nc -z 127.0.0.1 2376; then
+  nohup podman system service --time=0 tcp:127.0.0.1:2376 &
+fi
+export DOCKER_HOST=tcp://127.0.0.1:2376
+EOF
+```
 
 # Restart WSL
 ```
