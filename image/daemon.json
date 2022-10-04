@@ -1,0 +1,17 @@
+{
+  "storage-driver": "overlay2",
+  "iptables": true,
+  "ipv6": false,
+  "ip6tables": false,
+  "live-restore": false,
+  "metrics-addr": "127.0.0.1:9323",
+  "features": {
+    "buildkit": true
+  },
+  "hosts": [
+    "unix:///var/run/docker.sock",
+    "tcp://127.0.0.1:2376"
+  ],
+  "pidfile": "/var/run/docker.pid",
+  "group": "docker"
+}

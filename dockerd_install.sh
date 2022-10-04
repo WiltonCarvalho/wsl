@@ -12,10 +12,8 @@ tar --extract --file docker.tgz --strip-components 1  \
 rm docker.tgz
 addgroup -g 133 docker || true
 # set up subuid/subgid so that "--userns-remap=default" works out-of-the-box
-addgroup dockremap || true
-id dockremap || useradd -g dockremap -s /bin/bash -d /home/dockremap -m dockremap
-grep dockremap /etc/subuid || echo 'dockremap:165536:65536' >> /etc/subuid
-grep dockremap /etc/subgid || echo 'dockremap:165536:65536' >> /etc/subgid
+grep $SUDO_USER /etc/subuid || echo "$SUDO_USER:165536:65536" >> /etc/subuid
+grep $SUDO_USER /etc/subgid || echo "$SUDO_USER:165536:65536" >> /etc/subgid
 # Buildx Plugin
 mkdir -p /usr/local/lib/docker/cli-plugins
 BUILDX_RELESES="https://github.com/docker/buildx/releases"
@@ -45,8 +43,24 @@ cat <<'EOF'> /etc/docker/daemon.json
 }
 EOF
 
-echo '%docker ALL=(ALL) NOPASSWD: /usr/local/bin/dockerd' | tee /etc/sudoers.d/docker1
-echo "$SUDO_USER" 'ALL=(ALL) NOPASSWD: /usr/local/bin/dockerd' | tee /etc/sudoers.d/docker2
+cat <<'EOF'> /dockerd.sh
+#!/bin/bash
+set -e
+if [ ! -S "/var/run/docker.sock" ] && [ -f /usr/local/bin/dockerd ]; then
+  echo '[ Starting Docker... ]'
+  exec dockerd &>/var/log/docker.log &
+fi
+EOF
+
+chmod +x /dockerd.sh
+
+cat <<'EOF'> /home/$SUDO_USER/.profile
+sudo /dockerd.sh
+source ~/.bashrc
+EOF
+
+echo '%docker ALL=(ALL) NOPASSWD: /dockerd.sh' | tee /etc/sudoers.d/99-dockerd
+echo "$SUDO_USER" 'ALL=(ALL) NOPASSWD: /dockerd.sh' | tee -a /etc/sudoers.d/99-dockerd
 
 sed -i "/group/ s/docker/$SUDO_USER/" /etc/docker/daemon.json
 

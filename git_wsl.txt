@@ -1,0 +1,11 @@
+git.exe config --global core.eol lf
+git.exe config --global core.autocrlf input
+git.exe config --global core.filemode false
+git.exe config --local core.eol lf
+git.exe config --local core.autocrlf input
+git.exe config --local core.filemode false
+
+
+git.exe config --global core.autocrlf false
+git.exe config --global core.filemode false
+git.exe config --local core.filemode false

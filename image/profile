@@ -1,0 +1,2 @@
+sudo /dockerd.sh
+source ~/.bashrc

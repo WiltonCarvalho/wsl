@@ -117,23 +117,6 @@ EOF
 ```
 sudo ./dockerd_install.sh
 ```
-# Docker start
-```
-# With WSL CLI
-wsl.exe --user root --exec dockerd
-
-# OR
-# With Shell .profile
-
-cat <<'EOF'> .profile
-if [ ! -S "/var/run/docker.sock" ] && [ -f /usr/local/bin/dockerd ]; then
-  nohup sudo -b sh -c '
-    set -ex
-    exec dockerd &>/var/log/docker.log &
-  ' > /tmp/nohup.out
-fi
-EOF
-```
 # MS OpenJDK
 ```
 winget search Microsoft.OpenJDK

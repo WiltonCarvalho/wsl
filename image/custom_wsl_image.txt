@@ -1,0 +1,20 @@
+docker build -t wsl .
+docker create --name wsl wsl
+docker export wsl > wsl.tar
+docker rm wsl
+
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+curl.exe -L# -o wsl_update_x64.msi https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+msiexec /i wsl_update_x64.msi
+
+wsl.exe -l -v
+wsl --set-default-version 2
+
+scp.exe wiltoncarvalho@192.168.122.1:code/my-github/wsl/image/wsl.tar .
+wsl.exe --import UbuntuMinimal C:\wslDistroStorage\ubuntu .\wsl.tar
+wsl.exe -d UbuntuMinimal
+wsl.exe --user ubuntu
+
+wsl.exe --shutdown
+wsl.exe --unregister UbuntuMinimal
