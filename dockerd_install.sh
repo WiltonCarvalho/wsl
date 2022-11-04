@@ -1,5 +1,9 @@
 #!/bin/sh
 set -ex \
+if [ -z $SUDO_USER ] || [ $SUDO_USER == "root" ]; then 
+  printf '\nRun with sudo, NOT as root!\n\n'
+  exit 1
+fi
 # Install Docker CE
 DOCKER_BUCKET="download.docker.com"
 ARCH=x86_64
@@ -10,7 +14,7 @@ curl -fsSL "https://${DOCKER_BUCKET}/linux/static/stable/$ARCH/docker-${DOCKER_V
 tar --extract --file docker.tgz --strip-components 1  \
   --directory /usr/local/bin/
 rm docker.tgz
-addgroup -g 133 docker || true
+addgroup --gid 133 docker || true
 # set up subuid/subgid so that "--userns-remap=default" works out-of-the-box
 grep $SUDO_USER /etc/subuid || echo "$SUDO_USER:165536:65536" >> /etc/subuid
 grep $SUDO_USER /etc/subgid || echo "$SUDO_USER:165536:65536" >> /etc/subgid
@@ -63,5 +67,12 @@ echo '%docker ALL=(ALL) NOPASSWD: /dockerd.sh' | tee /etc/sudoers.d/99-dockerd
 echo "$SUDO_USER" 'ALL=(ALL) NOPASSWD: /dockerd.sh' | tee -a /etc/sudoers.d/99-dockerd
 
 sed -i "/group/ s/docker/$SUDO_USER/" /etc/docker/daemon.json
+
+cat <<EOF> /etc/wsl.conf
+[user]
+default=$SUDO_USER
+[automount]
+options=metadata
+EOF
 
 docker --version
