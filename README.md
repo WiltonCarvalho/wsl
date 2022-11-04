@@ -52,6 +52,7 @@ sudo mount /tmp
 # Docker Ubuntu WSL
 ```
 curl -fsSL https://raw.githubusercontent.com/WiltonCarvalho/wsl/main/dockerd_install.sh -o dockerd_install.sh
+chmod +x dockerd_install.sh
 sudo ./dockerd_install.sh
 ```
 # Podman Ubuntu WSL
