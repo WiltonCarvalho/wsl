@@ -49,6 +49,11 @@ echo "none  /tmp  tmpfs  defaults  0 0" | sudo tee -a /etc/fstab
 sudo rm -rf /tmp/*
 sudo mount /tmp
 ```
+# Docker Ubuntu WSL
+```
+curl -fsSL https://raw.githubusercontent.com/WiltonCarvalho/wsl/main/dockerd_install.sh -o dockerd_install.sh
+sudo ./dockerd_install.sh
+```
 # Podman Ubuntu WSL
 ```
 sudo apt update
@@ -112,10 +117,6 @@ if ! nc -z 127.0.0.1 2376; then
 fi
 export DOCKER_HOST=tcp://127.0.0.1:2376
 EOF
-```
-# Docker Standalone
-```
-sudo ./dockerd_install.sh
 ```
 # MS OpenJDK
 ```
