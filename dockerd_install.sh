@@ -1,5 +1,5 @@
 #!/bin/sh
-set -ex \
+set -ex
 if [ -z $SUDO_USER ] || [ $SUDO_USER == "root" ]; then 
   printf '\nRun with sudo, NOT as root!\n\n'
   exit 1
