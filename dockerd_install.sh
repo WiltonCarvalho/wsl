@@ -26,6 +26,15 @@ curl -fsSL $BUILDX_RELESES/download/$BUILDX_VERSION/buildx-$BUILDX_VERSION.linux
   -o /usr/local/lib/docker/cli-plugins/docker-buildx
 chmod +x /usr/local/lib/docker/cli-plugins/docker-buildx
 
+# Docker Compose
+COMPOSE_RELESES="https://github.com/docker/compose/releases"
+COMPOSE_VERSION=$(curl -fsL $COMPOSE_RELESES/latest | grep -m 1 -Eo 'v[0-9]+\.[0-9]+\.[0-9]*')
+curl -fsSL $COMPOSE_RELESES/download/$COMPOSE_VERSION/docker-compose-linux-x86_64 \
+  -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+ln -s /usr/local/bin/docker-compose /usr/local/lib/docker/cli-plugins/docker-compose
+docker-compose version
+
 mkdir -p /etc/docker
 cat <<'EOF'> /etc/docker/daemon.json
 {
