@@ -21,7 +21,7 @@ grep $SUDO_USER /etc/subgid || echo "$SUDO_USER:165536:65536" >> /etc/subgid
 # Buildx Plugin
 mkdir -p /usr/local/lib/docker/cli-plugins
 BUILDX_RELESES="https://github.com/docker/buildx/releases"
-BUILDX_VERSION=$(curl -fsL $BUILDX_RELESES | grep -m 1 -Eo 'v[0-9]+\.[0-9]+\.[0-9]*')
+BUILDX_VERSION=$(curl -fsL $BUILDX_RELESES/latest | grep -m 1 -Eo 'v[0-9]+\.[0-9]+\.[0-9]*')
 curl -fsSL $BUILDX_RELESES/download/$BUILDX_VERSION/buildx-$BUILDX_VERSION.linux-amd64 \
   -o /usr/local/lib/docker/cli-plugins/docker-buildx
 chmod +x /usr/local/lib/docker/cli-plugins/docker-buildx
