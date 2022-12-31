@@ -48,8 +48,7 @@ cat <<'EOF'> /etc/docker/daemon.json
     "buildkit": true
   },
   "hosts": [
-    "unix:///var/run/docker.sock",
-    "tcp://127.0.0.1:2376"
+    "unix:///var/run/docker.sock"
   ],
   "pidfile": "/var/run/docker.pid",
   "group": "docker"
