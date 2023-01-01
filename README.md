@@ -91,7 +91,6 @@ df -h /mnt/wsl/WSL_DATA
 ```
 cat <<'EOF' | sudo tee /mount-vhd.sh
 #!/bin/bash
-set -e
 if ! df -h /mnt/wsl/WSL_DATA &> /dev/null; then
         powershell.exe 'wsl --mount --vhd $env:USERPROFILE\WSL_DATA.vhdx --partition 1 --type ext4 --name WSL_DATA'
 else
