@@ -94,7 +94,7 @@ set -e
 if ! df -h /mnt/wsl/WSL_DATA &> /dev/null; then
         powershell.exe 'wsl --mount --vhd $env:USERPROFILE\WSL_DATA.vhdx --partition 1 --type ext4 --name WSL_DATA'
 else
-        echo "The disk already mounted as '/mnt/wsl/WSL_DATA'."
+        echo "The disk is already mounted as '/mnt/wsl/WSL_DATA'."
         echo 'To unmount and detach the disk, run' 'powershell.exe '\''wsl -d Ubuntu --unmount \\?\$env:USERPROFILE\WSL_DATA.vhdx'\'
 fi
 EOF
