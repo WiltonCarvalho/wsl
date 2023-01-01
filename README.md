@@ -87,6 +87,7 @@ wsl --mount --vhd $env:USERPROFILE\WSL_DATA.vhdx --partition 1 --type ext4 --nam
 wsl
 df -h /mnt/wsl/WSL_DATA
 ```
+# Automount VHD
 ```
 cat <<'EOF' | sudo tee /mount-vhd.sh
 #!/bin/bash
@@ -103,6 +104,17 @@ EOF
 chmod +x /mount-vhd.sh
 
 echo 'source /mount-vhd.sh' >> $HOME/.profile
+```
+# WSL CPU and RAM Limit
+```
+https://learn.microsoft.com/en-us/windows/wsl/wsl-config#wsl-2-settings
+
+powershell.exe 'notepad $env:USERPROFILE/.wslconfig'
+[wsl2]
+memory=3GB
+processors=4
+
+wsl.exe --shutdown
 ```
 # Podman Ubuntu WSL
 ```
