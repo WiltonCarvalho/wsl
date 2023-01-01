@@ -88,7 +88,7 @@ wsl
 df -h /mnt/wsl/WSL_DATA
 ```
 ```
-cat <<'EOF'> /mount-vhd.sh
+cat <<'EOF' | sudo tee /mount-vhd.sh
 #!/bin/bash
 set -e
 if ! df -h /mnt/wsl/WSL_DATA &> /dev/null; then
