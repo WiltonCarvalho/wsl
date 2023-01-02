@@ -52,6 +52,11 @@ echo "none  /tmp  tmpfs  defaults  0 0" | sudo tee -a /etc/fstab
 sudo rm -rf /tmp/*
 sudo mount /tmp
 ```
+# Custom bashrc
+```
+curl -fsSL https://github.com/WiltonCarvalho/wsl/raw/main/bashrc.txt | tee -a $HOME/.bashrc
+curl -fsSL https://github.com/WiltonCarvalho/wsl/raw/main/bashrc.txt | sudo tee -a /root/.bashrc
+```
 # Docker Ubuntu WSL
 ```
 curl -fsSL https://raw.githubusercontent.com/WiltonCarvalho/wsl/main/dockerd_install.sh \
