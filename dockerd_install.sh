@@ -20,16 +20,16 @@ grep $SUDO_USER /etc/subuid || echo "$SUDO_USER:165536:65536" >> /etc/subuid
 grep $SUDO_USER /etc/subgid || echo "$SUDO_USER:165536:65536" >> /etc/subgid
 # Buildx Plugin
 mkdir -p /usr/local/lib/docker/cli-plugins
-BUILDX_RELESES="https://github.com/docker/buildx/releases"
-BUILDX_VERSION=$(curl -fsL $BUILDX_RELESES/latest | grep -m 1 -Eo 'v[0-9]+\.[0-9]+\.[0-9]*')
-curl -fsSL $BUILDX_RELESES/download/$BUILDX_VERSION/buildx-$BUILDX_VERSION.linux-amd64 \
+BUILDX_RELEASES="https://github.com/docker/buildx/releases"
+BUILDX_VERSION=$(curl -fsL $BUILDX_RELEASES/latest | grep -m 1 -Eo 'v[0-9]+\.[0-9]+\.[0-9]*')
+curl -fsSL $BUILDX_RELEASES/download/$BUILDX_VERSION/buildx-$BUILDX_VERSION.linux-amd64 \
   -o /usr/local/lib/docker/cli-plugins/docker-buildx
 chmod +x /usr/local/lib/docker/cli-plugins/docker-buildx
 
 # Docker Compose
-COMPOSE_RELESES="https://github.com/docker/compose/releases"
-COMPOSE_VERSION=$(curl -fsL $COMPOSE_RELESES/latest | grep -m 1 -Eo 'v[0-9]+\.[0-9]+\.[0-9]*')
-curl -fsSL $COMPOSE_RELESES/download/$COMPOSE_VERSION/docker-compose-linux-x86_64 \
+COMPOSE_RELEASES="https://github.com/docker/compose/releases"
+COMPOSE_VERSION=$(curl -fsL $COMPOSE_RELEASES/latest | grep -m 1 -Eo 'v[0-9]+\.[0-9]+\.[0-9]*')
+curl -fsSL $COMPOSE_RELEASES/download/$COMPOSE_VERSION/docker-compose-linux-x86_64 \
   -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ln -sf /usr/local/bin/docker-compose /usr/local/lib/docker/cli-plugins/docker-compose
